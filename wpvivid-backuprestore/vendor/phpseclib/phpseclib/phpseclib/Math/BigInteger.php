@@ -245,15 +245,29 @@ class Math_BigInteger
     function __construct($x = 0, $base = 10)
     {
         if (!defined('MATH_BIGINTEGER_MODE')) {
-            switch (true) {
-                case extension_loaded('gmp'):
-                    define('MATH_BIGINTEGER_MODE', MATH_BIGINTEGER_MODE_GMP);
-                    break;
-                case extension_loaded('bcmath'):
-                    define('MATH_BIGINTEGER_MODE', MATH_BIGINTEGER_MODE_BCMATH);
-                    break;
-                default:
-                    define('MATH_BIGINTEGER_MODE', MATH_BIGINTEGER_MODE_INTERNAL);
+            if((substr(PHP_VERSION, 0, 3) === '8.2') && version_compare(PHP_VERSION, '8.2.26', '>=') ||
+                (substr(PHP_VERSION, 0, 3) === '8.3') && version_compare(PHP_VERSION, '8.3.14', '>='))
+            {
+                switch (true) {
+                    case extension_loaded('bcmath'):
+                        define('MATH_BIGINTEGER_MODE', MATH_BIGINTEGER_MODE_BCMATH);
+                        break;
+                    default:
+                        define('MATH_BIGINTEGER_MODE', MATH_BIGINTEGER_MODE_INTERNAL);
+                }
+            }
+            else
+            {
+                switch (true) {
+                    case extension_loaded('gmp'):
+                        define('MATH_BIGINTEGER_MODE', MATH_BIGINTEGER_MODE_GMP);
+                        break;
+                    case extension_loaded('bcmath'):
+                        define('MATH_BIGINTEGER_MODE', MATH_BIGINTEGER_MODE_BCMATH);
+                        break;
+                    default:
+                        define('MATH_BIGINTEGER_MODE', MATH_BIGINTEGER_MODE_INTERNAL);
+                }
             }
         }
 
