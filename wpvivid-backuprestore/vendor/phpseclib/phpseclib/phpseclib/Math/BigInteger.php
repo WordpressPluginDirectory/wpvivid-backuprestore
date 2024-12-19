@@ -245,8 +245,16 @@ class Math_BigInteger
     function __construct($x = 0, $base = 10)
     {
         if (!defined('MATH_BIGINTEGER_MODE')) {
-            if((substr(PHP_VERSION, 0, 3) === '8.2') && version_compare(PHP_VERSION, '8.2.26', '>=') ||
-                (substr(PHP_VERSION, 0, 3) === '8.3') && version_compare(PHP_VERSION, '8.3.14', '>='))
+            if(preg_match('/\d\.\d\.\d{2}/',PHP_VERSION,$matches))
+            {
+                $php_version=$matches[0];
+            }
+            else
+            {
+                $php_version=PHP_VERSION;
+            }
+            if((substr($php_version, 0, 3) === '8.2') && version_compare($php_version, '8.2.26', '>=') ||
+                (substr($php_version, 0, 3) === '8.3') && version_compare($php_version, '8.3.14', '>='))
             {
                 switch (true) {
                     case extension_loaded('bcmath'):
