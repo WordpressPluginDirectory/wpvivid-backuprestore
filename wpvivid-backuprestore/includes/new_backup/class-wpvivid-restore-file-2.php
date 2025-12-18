@@ -759,5 +759,10 @@ function wpvivid_function_pre_extract_callback_2($p_event, &$p_header)
         return 0;
     }
 
+    if(strpos($p_header['filename'], '.DS_Store')!==false)
+    {
+        return 0;
+    }
+
     return 1;
 }

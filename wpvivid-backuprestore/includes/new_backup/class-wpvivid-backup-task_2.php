@@ -391,6 +391,7 @@ class WPvivid_Backup_Task_2
 
         $exclude_regex[]='#^'.preg_quote($this -> transfer_path(WP_CONTENT_DIR).'/'.'wpvivid', '/').'#';
         $exclude_regex[]='#^'.preg_quote($this -> transfer_path(WP_CONTENT_DIR).'/'.WPvivid_Setting::get_backupdir(), '/').'#';
+        $exclude_regex[]='#/\.DS_Store$#';
 
         if(defined('WPVIVID_UPLOADS_ISO_DIR'))
         {

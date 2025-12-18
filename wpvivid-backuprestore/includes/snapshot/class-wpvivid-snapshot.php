@@ -556,7 +556,6 @@ class WPvivid_Snapshot_Ex
         ?>
         <div class="wrap wpvivid-canvas">
             <div class="icon32"></div>
-            <h1><?php echo esc_html( apply_filters('wpvivid_white_label_display', 'WPvivid').' Plugins - Snapshots' ); ?></h1>
             <div id="wpvivid_backup_notice"></div>
             <div id="poststuff">
                 <div id="post-body" class="metabox-holder columns-2">
@@ -564,6 +563,9 @@ class WPvivid_Snapshot_Ex
                         <div class="meta-box-sortables ui-sortable">
                             <div class="wpvivid-backup">
                                 <?php $this->welcome_bar();?>
+
+                                <?php do_action('wpvivid_v2_notice'); ?>
+
                                 <div class="wpvivid-canvas wpvivid-clear-float">
                                     <!---  backup progress --->
                                     <?php
